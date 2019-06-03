@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://webservice.kleber.teste.com.br" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://webservice.kleber.teste.com.br" xmlns:intf="http://webservice.kleber.teste.com.br" xmlns:tns1="http://model.kleber.teste.com.br" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://webservice.kleber.teste.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://model.kleber.teste.com.br"/>
+   <element name="getExame">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getExameResponse">
+    <complexType>
+     <sequence>
+      <element name="getExameReturn" type="tns1:Exame"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://model.kleber.teste.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="Medico">
+    <sequence>
+     <element name="crm" nillable="true" type="xsd:string"/>
+     <element name="especialidade" nillable="true" type="xsd:string"/>
+     <element name="id" type="xsd:int"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Paciente">
+    <sequence>
+     <element name="convenio" nillable="true" type="xsd:string"/>
+     <element name="id" type="xsd:int"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Exame">
+    <sequence>
+     <element name="exame" nillable="true" type="xsd:string"/>
+     <element name="id" type="xsd:int"/>
+     <element name="medico" nillable="true" type="tns1:Medico"/>
+     <element name="paciente" nillable="true" type="tns1:Paciente"/>
+     <element name="responsavel" nillable="true" type="xsd:string"/>
+     <element name="resultado" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getExameResponse">
+
+      <wsdl:part element="impl:getExameResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getExameRequest">
+
+      <wsdl:part element="impl:getExame" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Service">
+
+      <wsdl:operation name="getExame">
+
+         <wsdl:input message="impl:getExameRequest" name="getExameRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getExameResponse" name="getExameResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ServiceSoapBinding" type="impl:Service">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getExame">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getExameRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getExameResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ServiceService">
+
+      <wsdl:port binding="impl:ServiceSoapBinding" name="Service">
+
+         <wsdlsoap:address location="http://localhost:8080/WSSoap01/services/Service"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
